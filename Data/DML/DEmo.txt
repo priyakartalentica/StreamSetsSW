@@ -1,0 +1,310 @@
+URL : http://priyak-ub:18630/
+
+
+Demo 1 : Streaming Bulk Data
+
+jdbc:mysql://priyak-ub:3309/publication
+com.mysql.jdbc.Driver
+
+mongodb://root1:password@localhost:27017/publication?authMechanism=SCRAM-SHA-1
+publication
+TEMPLATEFIELDFREE5
+
+select TEMPLATEFIELDID, TEMPLATECUSTOMID, FREESTRING, FREEDATE, FREENUMERIC from TEMPLATEFIELDFREE where TEMPLATEFIELDID >${OFFSET} order by TEMPLATEFIELDID
+
+::::
+Insert data in DB:
+
+INSERT INTO `publication`.`CAMPAIGNS` 
+(`CAMPAIGNID`, `CAMPAIGNNAME`, `SUBJECT`, `CAMPAIGNMEDIUMID`, `CAMPAIGNSOURCEID`, `MANAGEDCAMPAIGNID`, `DATECREATED`,`lastUpdated`) values 
+(1000024,'OP Email Template 1 - Default - 09/17/2012','Testing OP',8439,11732,261035,'18-09-12',current_timestamp());
+
+
+INSERT INTO `publication`.`TEMPLATECUSTOM` 
+(`TEMPLATECUSTOMID`, `TEMPLATEID`, `COMPANYSITEID`, `USERID`, `CUSTOMNAME`, `TEMPLATESTATUSID`, `DATECREATED`, `DATEUPDATED`,`lastUpdated`) VALUES 
+(1000024,1000024,7970,19999,'OP Email Template 1 - Default',1,'18-09-12','18-09-12',current_timestamp());
+
+
+INSERT INTO `publication`.`CAMPAIGNTEMPLATECUSTOM` 
+(`CAMPAIGNID`,`TEMPLATECUSTOMID`,`lastUpdated`) VALUES 
+(1000024,1000024,current_timestamp());
+
+INSERT INTO `publication`.`TEMPLATEFIELD` 
+(`TEMPLATEFIELDID`, `TEMPLATEID`, `FIELDNAME`, `FIELDDESC`, `FIELDTYPE`, `REQUIRED`, `SORT`, `EDITABLE`, `MARKETINGASSETID`, `IMAGE_TEMPLATE_ID`, `NAME_RESOURCE_KEY`, `MIN_LENGTH`, `MAX_LENGTH`, `SHOWTOOLTIP`, `DESCRIPTION_RESOURCE_KEY`,`lastUpdated`) VALUES 
+(1000024,1000024,'Email Body 1','Email Body 1','TextArea',1,4,1,0,22,null,null,null,0,null,current_timestamp());
+
+
+INSERT INTO `publication`.`TEMPLATEFIELDFREE` 
+(`TEMPLATEFIELDID`, `TEMPLATECUSTOMID`, `FREESTRING`, `FREEDATE`, `FREENUMERIC`,`lastUpdated`) VALUES 
+(1000024,1000024,'TemplateField483_1012.jpg','2021-02-06',883,current_timestamp());
+
+Insert into `publication`.`TEMPLATEFIELDCLOB` 
+(`TEMPLATEFIELDID`,`TEMPLATECUSTOMID`,`FREECLOB`,`lastUpdated`) values 
+(1000024,1000024,'Printing technology is advancing at a shocking rate. Output speed, image quality and print materials are all improving by leaps and bounds. In order to keep up, you would need to replace your print fleet at least every few years and dedicate valuable resources to manage this new technology.',current_timestamp());
+
+
+INSERT INTO `publication`.`TEMPLATEFIELDSUB` 
+(`TEMPLATEFIELDSUBID`, `TEMPLATEFIELDID`, `SUBNAME`, `SORT`,`lastUpdated`)VALUES 
+(1000024,1000024,'Product',1,current_timestamp());
+
+
+INSERT INTO `publication`.`TEMPLATEFIELDSUBSELECT` 
+(`TEMPLATEFIELDSUBID`, `TEMPLATECUSTOMID`,`lastUpdated`) VALUES 
+(1000024,1000024,current_timestamp());
+
+::::
+db.createUser(
+{	user: "root1",
+	pwd: "password",
+	roles:[{role: "userAdmin" , db:"publication"}]})
+==================================================================================================
+2-ExecutingComplexQueries:
+
+
+
+
+
+
+INSERT INTO `publication`.`CAMPAIGNS` 
+(`CAMPAIGNID`, `CAMPAIGNNAME`, `SUBJECT`, `CAMPAIGNMEDIUMID`, `CAMPAIGNSOURCEID`, `MANAGEDCAMPAIGNID`, `DATECREATED`,`lastUpdated`) values 
+(1000026,'OP Email Template 1 - Default - 09/17/2012','Testing OP',8439,11732,261035,'18-09-12',current_timestamp());
+
+
+INSERT INTO `publication`.`TEMPLATECUSTOM` 
+(`TEMPLATECUSTOMID`, `TEMPLATEID`, `COMPANYSITEID`, `USERID`, `CUSTOMNAME`, `TEMPLATESTATUSID`, `DATECREATED`, `DATEUPDATED`,`lastUpdated`) VALUES 
+(1000026,1000026,7970,19999,'OP Email Template 1 - Default',1,'18-09-12','18-09-12',current_timestamp());
+
+
+INSERT INTO `publication`.`CAMPAIGNTEMPLATECUSTOM` 
+(`CAMPAIGNID`,`TEMPLATECUSTOMID`,`lastUpdated`) VALUES 
+(1000026,1000026,current_timestamp());
+
+INSERT INTO `publication`.`TEMPLATEFIELD` 
+(`TEMPLATEFIELDID`, `TEMPLATEID`, `FIELDNAME`, `FIELDDESC`, `FIELDTYPE`, `REQUIRED`, `SORT`, `EDITABLE`, `MARKETINGASSETID`, `IMAGE_TEMPLATE_ID`, `NAME_RESOURCE_KEY`, `MIN_LENGTH`, `MAX_LENGTH`, `SHOWTOOLTIP`, `DESCRIPTION_RESOURCE_KEY`,`lastUpdated`) VALUES 
+(1000026,1000026,'Email Body 1','Email Body 1','TextArea',1,4,1,0,22,null,null,null,0,null,current_timestamp());
+
+
+INSERT INTO `publication`.`TEMPLATEFIELDFREE` 
+(`TEMPLATEFIELDID`, `TEMPLATECUSTOMID`, `FREESTRING`, `FREEDATE`, `FREENUMERIC`,`lastUpdated`) VALUES 
+(1000026,1000026,'TemplateField483_1012.jpg','2021-02-06',883,current_timestamp());
+
+Insert into `publication`.`TEMPLATEFIELDCLOB` 
+(`TEMPLATEFIELDID`,`TEMPLATECUSTOMID`,`FREECLOB`,`lastUpdated`) values 
+(1000026,1000026,'Printing technology is advancing at a shocking rate. Output speed, image quality and print materials are all improving by leaps and bounds. In order to keep up, you would need to replace your print fleet at least every few years and dedicate valuable resources to manage this new technology.',current_timestamp());
+
+
+
+
+
+INSERT INTO `publication`.`CAMPAIGNS` 
+(`CAMPAIGNID`, `CAMPAIGNNAME`, `SUBJECT`, `CAMPAIGNMEDIUMID`, `CAMPAIGNSOURCEID`, `MANAGEDCAMPAIGNID`, `DATECREATED`,`lastUpdated`) values 
+(1000027,'OP Email Template 1 - Default - 09/17/2012','Testing OP',8439,11732,261035,'18-09-12',current_timestamp());
+
+
+INSERT INTO `publication`.`TEMPLATECUSTOM` 
+(`TEMPLATECUSTOMID`, `TEMPLATEID`, `COMPANYSITEID`, `USERID`, `CUSTOMNAME`, `TEMPLATESTATUSID`, `DATECREATED`, `DATEUPDATED`,`lastUpdated`) VALUES 
+(1000027,1000027,7970,19999,'OP Email Template 1 - Default',1,'18-09-12','18-09-12',current_timestamp());
+
+
+INSERT INTO `publication`.`CAMPAIGNTEMPLATECUSTOM` 
+(`CAMPAIGNID`,`TEMPLATECUSTOMID`,`lastUpdated`) VALUES 
+(1000027,1000027,current_timestamp());
+
+INSERT INTO `publication`.`TEMPLATEFIELD` 
+(`TEMPLATEFIELDID`, `TEMPLATEID`, `FIELDNAME`, `FIELDDESC`, `FIELDTYPE`, `REQUIRED`, `SORT`, `EDITABLE`, `MARKETINGASSETID`, `IMAGE_TEMPLATE_ID`, `NAME_RESOURCE_KEY`, `MIN_LENGTH`, `MAX_LENGTH`, `SHOWTOOLTIP`, `DESCRIPTION_RESOURCE_KEY`,`lastUpdated`) VALUES 
+(1000027,1000027,'Email Body 1','Email Body 1','TextArea',1,4,1,0,22,null,null,null,0,null,current_timestamp());
+
+
+INSERT INTO `publication`.`TEMPLATEFIELDFREE` 
+(`TEMPLATEFIELDID`, `TEMPLATECUSTOMID`, `FREESTRING`, `FREEDATE`, `FREENUMERIC`,`lastUpdated`) VALUES 
+(1000027,1000027,'TemplateField483_1012.jpg','2021-02-06',883,current_timestamp());
+
+Insert into `publication`.`TEMPLATEFIELDCLOB` 
+(`TEMPLATEFIELDID`,`TEMPLATECUSTOMID`,`FREECLOB`,`lastUpdated`) values 
+(1000027,1000027,'Printing technology is advancing at a shocking rate. Output speed, image quality and print materials are all improving by leaps and bounds. In order to keep up, you would need to replace your print fleet at least every few years and dedicate valuable resources to manage this new technology.',current_timestamp());
+
+
+
+
+INSERT INTO `publication`.`CAMPAIGNS` 
+(`CAMPAIGNID`, `CAMPAIGNNAME`, `SUBJECT`, `CAMPAIGNMEDIUMID`, `CAMPAIGNSOURCEID`, `MANAGEDCAMPAIGNID`, `DATECREATED`,`lastUpdated`) values 
+(1000028,'OP Email Template 1 - Default - 09/17/2012','Testing OP',8439,11732,261035,'18-09-12',current_timestamp());
+
+
+INSERT INTO `publication`.`TEMPLATECUSTOM` 
+(`TEMPLATECUSTOMID`, `TEMPLATEID`, `COMPANYSITEID`, `USERID`, `CUSTOMNAME`, `TEMPLATESTATUSID`, `DATECREATED`, `DATEUPDATED`,`lastUpdated`) VALUES 
+(1000028,1000028,7970,19999,'OP Email Template 1 - Default',1,'18-09-12','18-09-12',current_timestamp());
+
+
+INSERT INTO `publication`.`CAMPAIGNTEMPLATECUSTOM` 
+(`CAMPAIGNID`,`TEMPLATECUSTOMID`,`lastUpdated`) VALUES 
+(1000028,1000028,current_timestamp());
+
+INSERT INTO `publication`.`TEMPLATEFIELD` 
+(`TEMPLATEFIELDID`, `TEMPLATEID`, `FIELDNAME`, `FIELDDESC`, `FIELDTYPE`, `REQUIRED`, `SORT`, `EDITABLE`, `MARKETINGASSETID`, `IMAGE_TEMPLATE_ID`, `NAME_RESOURCE_KEY`, `MIN_LENGTH`, `MAX_LENGTH`, `SHOWTOOLTIP`, `DESCRIPTION_RESOURCE_KEY`,`lastUpdated`) VALUES 
+(1000028,1000028,'Email Body 1','Email Body 1','TextArea',1,4,1,0,22,null,null,null,0,null,current_timestamp());
+
+
+INSERT INTO `publication`.`TEMPLATEFIELDFREE` 
+(`TEMPLATEFIELDID`, `TEMPLATECUSTOMID`, `FREESTRING`, `FREEDATE`, `FREENUMERIC`,`lastUpdated`) VALUES 
+(1000028,1000028,'TemplateField483_1012.jpg','2021-02-06',883,current_timestamp());
+
+Insert into `publication`.`TEMPLATEFIELDCLOB` 
+(`TEMPLATEFIELDID`,`TEMPLATECUSTOMID`,`FREECLOB`,`lastUpdated`) values 
+(1000028,1000028,'Printing technology is advancing at a shocking rate. Output speed, image quality and print materials are all improving by leaps and bounds. In order to keep up, you would need to replace your print fleet at least every few years and dedicate valuable resources to manage this new technology.',current_timestamp());
+
+
+
+
+
+=============================================================================================================
+
+
+
+3. Multidestination
+
+
+
+INSERT INTO `publication`.`CAMPAIGNS` 
+(`CAMPAIGNID`, `CAMPAIGNNAME`, `SUBJECT`, `CAMPAIGNMEDIUMID`, `CAMPAIGNSOURCEID`, `MANAGEDCAMPAIGNID`, `DATECREATED`,`lastUpdated`) values 
+(1000032,'OP Email Template 1 - Default - 09/17/2012','Testing OP',8439,11732,261035,'18-09-12',current_timestamp());
+
+
+INSERT INTO `publication`.`TEMPLATECUSTOM` 
+(`TEMPLATECUSTOMID`, `TEMPLATEID`, `COMPANYSITEID`, `USERID`, `CUSTOMNAME`, `TEMPLATESTATUSID`, `DATECREATED`, `DATEUPDATED`,`lastUpdated`) VALUES 
+(1000032,1000032,7970,19999,'OP Email Template 1 - Default',1,'18-09-12','18-09-12',current_timestamp());
+
+
+INSERT INTO `publication`.`CAMPAIGNTEMPLATECUSTOM` 
+(`CAMPAIGNID`,`TEMPLATECUSTOMID`,`lastUpdated`) VALUES 
+(1000032,1000032,current_timestamp());
+
+INSERT INTO `publication`.`TEMPLATEFIELD` 
+(`TEMPLATEFIELDID`, `TEMPLATEID`, `FIELDNAME`, `FIELDDESC`, `FIELDTYPE`, `REQUIRED`, `SORT`, `EDITABLE`, `MARKETINGASSETID`, `IMAGE_TEMPLATE_ID`, `NAME_RESOURCE_KEY`, `MIN_LENGTH`, `MAX_LENGTH`, `SHOWTOOLTIP`, `DESCRIPTION_RESOURCE_KEY`,`lastUpdated`) VALUES 
+(1000032,1000032,'Email Body 1','Email Body 1','TextArea',1,4,1,0,22,null,null,null,0,null,current_timestamp());
+
+
+INSERT INTO `publication`.`TEMPLATEFIELDFREE` 
+(`TEMPLATEFIELDID`, `TEMPLATECUSTOMID`, `FREESTRING`, `FREEDATE`, `FREENUMERIC`,`lastUpdated`) VALUES 
+(1000032,1000032,'TemplateField483_1012.jpg','2021-02-06',883,current_timestamp());
+
+Insert into `publication`.`TEMPLATEFIELDCLOB` 
+(`TEMPLATEFIELDID`,`TEMPLATECUSTOMID`,`FREECLOB`,`lastUpdated`) values 
+(1000032,1000032,'Printing technology is advancing at a shocking rate. Output speed, image quality and print materials are all improving by leaps and bounds. In order to keep up, you would need to replace your print fleet at least every few years and dedicate valuable resources to manage this new technology.',current_timestamp());
+
+
+
+
+
+INSERT INTO `publication`.`CAMPAIGNS` 
+(`CAMPAIGNID`, `CAMPAIGNNAME`, `SUBJECT`, `CAMPAIGNMEDIUMID`, `CAMPAIGNSOURCEID`, `MANAGEDCAMPAIGNID`, `DATECREATED`,`lastUpdated`) values 
+(1000033,'OP Email Template 1 - Default - 09/17/2012','Testing OP',8439,11732,261035,'18-09-12',current_timestamp());
+
+
+INSERT INTO `publication`.`TEMPLATECUSTOM` 
+(`TEMPLATECUSTOMID`, `TEMPLATEID`, `COMPANYSITEID`, `USERID`, `CUSTOMNAME`, `TEMPLATESTATUSID`, `DATECREATED`, `DATEUPDATED`,`lastUpdated`) VALUES 
+(1000033,1000033,7970,19999,'OP Email Template 1 - Default',1,'18-09-12','18-09-12',current_timestamp());
+
+
+INSERT INTO `publication`.`CAMPAIGNTEMPLATECUSTOM` 
+(`CAMPAIGNID`,`TEMPLATECUSTOMID`,`lastUpdated`) VALUES 
+(1000033,1000033,current_timestamp());
+
+INSERT INTO `publication`.`TEMPLATEFIELD` 
+(`TEMPLATEFIELDID`, `TEMPLATEID`, `FIELDNAME`, `FIELDDESC`, `FIELDTYPE`, `REQUIRED`, `SORT`, `EDITABLE`, `MARKETINGASSETID`, `IMAGE_TEMPLATE_ID`, `NAME_RESOURCE_KEY`, `MIN_LENGTH`, `MAX_LENGTH`, `SHOWTOOLTIP`, `DESCRIPTION_RESOURCE_KEY`,`lastUpdated`) VALUES 
+(1000033,1000033,'Email Body 1','Email Body 1','TextArea',1,4,1,0,22,null,null,null,0,null,current_timestamp());
+
+
+INSERT INTO `publication`.`TEMPLATEFIELDFREE` 
+(`TEMPLATEFIELDID`, `TEMPLATECUSTOMID`, `FREESTRING`, `FREEDATE`, `FREENUMERIC`,`lastUpdated`) VALUES 
+(1000033,1000033,'TemplateField483_1012.jpg','2021-02-06',883,current_timestamp());
+
+Insert into `publication`.`TEMPLATEFIELDCLOB` 
+(`TEMPLATEFIELDID`,`TEMPLATECUSTOMID`,`FREECLOB`,`lastUpdated`) values 
+(1000033,1000033,'Printing technology is advancing at a shocking rate. Output speed, image quality and print materials are all improving by leaps and bounds. In order to keep up, you would need to replace your print fleet at least every few years and dedicate valuable resources to manage this new technology.',current_timestamp());
+
+
+
+
+INSERT INTO `publication`.`CAMPAIGNS` 
+(`CAMPAIGNID`, `CAMPAIGNNAME`, `SUBJECT`, `CAMPAIGNMEDIUMID`, `CAMPAIGNSOURCEID`, `MANAGEDCAMPAIGNID`, `DATECREATED`,`lastUpdated`) values 
+(1000036,'OP Email Template 1 - Default - 09/17/2012','Testing OP',8439,11732,261035,'18-09-12',current_timestamp());
+
+
+INSERT INTO `publication`.`TEMPLATECUSTOM` 
+(`TEMPLATECUSTOMID`, `TEMPLATEID`, `COMPANYSITEID`, `USERID`, `CUSTOMNAME`, `TEMPLATESTATUSID`, `DATECREATED`, `DATEUPDATED`,`lastUpdated`) VALUES 
+(1000036,1000036,7970,19999,'OP Email Template 1 - Default',1,'18-09-12','18-09-12',current_timestamp());
+
+
+INSERT INTO `publication`.`CAMPAIGNTEMPLATECUSTOM` 
+(`CAMPAIGNID`,`TEMPLATECUSTOMID`,`lastUpdated`) VALUES 
+(1000036,1000036,current_timestamp());
+
+INSERT INTO `publication`.`TEMPLATEFIELD` 
+(`TEMPLATEFIELDID`, `TEMPLATEID`, `FIELDNAME`, `FIELDDESC`, `FIELDTYPE`, `REQUIRED`, `SORT`, `EDITABLE`, `MARKETINGASSETID`, `IMAGE_TEMPLATE_ID`, `NAME_RESOURCE_KEY`, `MIN_LENGTH`, `MAX_LENGTH`, `SHOWTOOLTIP`, `DESCRIPTION_RESOURCE_KEY`,`lastUpdated`) VALUES 
+(1000036,1000036,'Email Body 1','Email Body 1','TextArea',1,4,1,0,22,null,null,null,0,null,current_timestamp());
+
+
+INSERT INTO `publication`.`TEMPLATEFIELDFREE` 
+(`TEMPLATEFIELDID`, `TEMPLATECUSTOMID`, `FREESTRING`, `FREEDATE`, `FREENUMERIC`,`lastUpdated`) VALUES 
+(1000036,1000036,'TemplateField483_1012.jpg','2021-02-06',883,current_timestamp());
+
+Insert into `publication`.`TEMPLATEFIELDCLOB` 
+(`TEMPLATEFIELDID`,`TEMPLATECUSTOMID`,`FREECLOB`,`lastUpdated`) values 
+(1000036,1000036,'Printing technology is advancing at a shocking rate. Output speed, image quality and print materials are all improving by leaps and bounds. In order to keep up, you would need to replace your print fleet at least every few years and dedicate valuable resources to manage this new technology.',current_timestamp());
+
+
+
+
+
+
+
+
+IAM username: mdipen
+account no: 613781902597
+pwd: swUser@123
+
+
+
+=================================================
+
+5-HandlingDataModification
+
+UPDATE `publication`.`TEMPLATEFIELDFREE`
+SET
+`FREESTRING` = "priya.kar.txt",
+`lastUpdated` = current_timestamp()
+WHERE `TEMPLATEFIELDID` =1000021 AND `TEMPLATECUSTOMID` = 1000021;
+
+
+{TEMPLATEFIELDID:1000021}
+
+
+==============================================
+
+UPDATE `publication`.`employee`
+SET
+`isActive` = FALSE, 
+`dateupdated`=current_timestamp()
+WHERE `idemployee` > 2;
+
+
+select * from `publication`.`employee`;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

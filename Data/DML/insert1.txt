@@ -1,0 +1,49 @@
+INSERT INTO `publication`.`CAMPAIGNS` 
+(`CAMPAIGNID`, `CAMPAIGNNAME`, `SUBJECT`, `CAMPAIGNMEDIUMID`, `CAMPAIGNSOURCEID`, `MANAGEDCAMPAIGNID`, `DATECREATED`,`lastUpdated`) values 
+(1000022,'OP Email Template 1 - Default - 09/17/2012','Testing OP',8439,11732,261035,'18-09-12',current_timestamp());
+
+
+INSERT INTO `publication`.`TEMPLATECUSTOM` 
+(`TEMPLATECUSTOMID`, `TEMPLATEID`, `COMPANYSITEID`, `USERID`, `CUSTOMNAME`, `TEMPLATESTATUSID`, `DATECREATED`, `DATEUPDATED`,`lastUpdated`) VALUES 
+(1000022,1000022,7970,19999,'OP Email Template 1 - Default',1,'18-09-12','18-09-12',current_timestamp());
+
+
+INSERT INTO `publication`.`CAMPAIGNTEMPLATECUSTOM` 
+(`CAMPAIGNID`,`TEMPLATECUSTOMID`,`lastUpdated`) VALUES 
+(1000022,1000022,current_timestamp());
+
+INSERT INTO `publication`.`TEMPLATEFIELD` 
+(`TEMPLATEFIELDID`, `TEMPLATEID`, `FIELDNAME`, `FIELDDESC`, `FIELDTYPE`, `REQUIRED`, `SORT`, `EDITABLE`, `MARKETINGASSETID`, `IMAGE_TEMPLATE_ID`, `NAME_RESOURCE_KEY`, `MIN_LENGTH`, `MAX_LENGTH`, `SHOWTOOLTIP`, `DESCRIPTION_RESOURCE_KEY`,`lastUpdated`) VALUES 
+(1000022,1000022,'Email Body 1','Email Body 1','TextArea',1,4,1,0,22,null,null,null,0,null,current_timestamp());
+
+
+INSERT INTO `publication`.`TEMPLATEFIELDFREE` 
+(`TEMPLATEFIELDID`, `TEMPLATECUSTOMID`, `FREESTRING`, `FREEDATE`, `FREENUMERIC`,`lastUpdated`) VALUES 
+(1000022,1000022,'TemplateField483_1012.jpg','2021-02-06',883,current_timestamp());
+
+Insert into `publication`.`TEMPLATEFIELDCLOB` 
+(`TEMPLATEFIELDID`,`TEMPLATECUSTOMID`,`FREECLOB`,`lastUpdated`) values 
+(1000022,1000022,'Printing technology is advancing at a shocking rate. Output speed, image quality and print materials are all improving by leaps and bounds. In order to keep up, you would need to replace your print fleet at least every few years and dedicate valuable resources to manage this new technology.',current_timestamp());
+
+
+INSERT INTO `publication`.`TEMPLATEFIELDSUB` 
+(`TEMPLATEFIELDSUBID`, `TEMPLATEFIELDID`, `SUBNAME`, `SORT`,`lastUpdated`)VALUES 
+(1000022,1000022,'Product',1,current_timestamp());
+
+
+INSERT INTO `publication`.`TEMPLATEFIELDSUBSELECT` 
+(`TEMPLATEFIELDSUBID`, `TEMPLATECUSTOMID`,`lastUpdated`) VALUES 
+(1000022,1000022,current_timestamp());
+
+
+
+
+select * from `publication`.`CAMPAIGNS` where  CAMPAIGNID=1000021;
+
+select * from `publication`.`TEMPLATECUSTOM` where  TEMPLATECUSTOMID=1000021;
+select * from `publication`.`CAMPAIGNTEMPLATECUSTOM` where  TEMPLATECUSTOMID=1000021;
+select * from `publication`.`TEMPLATEFIELD` where  TEMPLATEFIELDID=1000021;
+select * from `publication`.`TEMPLATEFIELDFREE` where  TEMPLATEFIELDID=1000021;
+select * from `publication`.`TEMPLATEFIELDCLOB` where  TEMPLATEFIELDID=1000021;
+select * from `publication`.`TEMPLATEFIELDSUB` where  TEMPLATEFIELDSUBID=1000021;
+select * from `publication`.`TEMPLATEFIELDSUBID` where  TEMPLATEFIELDSUBID=1000021;

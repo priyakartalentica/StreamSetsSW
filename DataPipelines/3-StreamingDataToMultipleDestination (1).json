@@ -1,0 +1,1529 @@
+{
+  "pipelineConfig" : {
+    "schemaVersion" : 6,
+    "version" : 22,
+    "pipelineId" : "S344c8e253-8d58-4487-86f5-fb652cb4e90b",
+    "title" : "3-StreamingDataToMultipleDestination",
+    "description" : "",
+    "uuid" : "7a8e64bb-9dac-46e4-b2e9-fb6dd28deabd",
+    "configuration" : [ {
+      "name" : "executionMode",
+      "value" : "STANDALONE"
+    }, {
+      "name" : "edgeHttpUrl",
+      "value" : "http://localhost:18633"
+    }, {
+      "name" : "deliveryGuarantee",
+      "value" : "AT_LEAST_ONCE"
+    }, {
+      "name" : "testOriginStage",
+      "value" : "streamsets-datacollector-dev-lib::com_streamsets_pipeline_stage_devtest_rawdata_RawDataDSource::3"
+    }, {
+      "name" : "startEventStage",
+      "value" : "streamsets-datacollector-basic-lib::com_streamsets_pipeline_stage_destination_devnull_ToErrorNullDTarget::1"
+    }, {
+      "name" : "stopEventStage",
+      "value" : "streamsets-datacollector-basic-lib::com_streamsets_pipeline_stage_destination_devnull_ToErrorNullDTarget::1"
+    }, {
+      "name" : "shouldRetry",
+      "value" : true
+    }, {
+      "name" : "triggerInterval",
+      "value" : 2000
+    }, {
+      "name" : "retryAttempts",
+      "value" : -1
+    }, {
+      "name" : "ludicrousMode",
+      "value" : false
+    }, {
+      "name" : "ludicrousModeInputCount",
+      "value" : false
+    }, {
+      "name" : "advancedErrorHandling",
+      "value" : false
+    }, {
+      "name" : "notifyOnStates",
+      "value" : [ "RUN_ERROR", "STOPPED", "FINISHED" ]
+    }, {
+      "name" : "emailIDs",
+      "value" : [ ]
+    }, {
+      "name" : "constants",
+      "value" : [ ]
+    }, {
+      "name" : "badRecordsHandling",
+      "value" : "streamsets-datacollector-basic-lib::com_streamsets_pipeline_stage_destination_devnull_ToErrorNullDTarget::1"
+    }, {
+      "name" : "errorRecordPolicy",
+      "value" : "ORIGINAL_RECORD"
+    }, {
+      "name" : "statsAggregatorStage",
+      "value" : "streamsets-datacollector-basic-lib::com_streamsets_pipeline_stage_destination_devnull_StatsDpmDirectlyDTarget::1"
+    }, {
+      "name" : "workerCount",
+      "value" : 0
+    }, {
+      "name" : "clusterSlaveMemory",
+      "value" : 2048
+    }, {
+      "name" : "clusterSlaveJavaOpts",
+      "value" : "-XX:+UseConcMarkSweepGC -XX:+UseParNewGC -Dlog4j.debug"
+    }, {
+      "name" : "clusterLauncherEnv",
+      "value" : [ ]
+    }, {
+      "name" : "mesosDispatcherURL",
+      "value" : null
+    }, {
+      "name" : "logLevel",
+      "value" : "INFO"
+    }, {
+      "name" : "hdfsS3ConfDir",
+      "value" : null
+    }, {
+      "name" : "rateLimit",
+      "value" : 0
+    }, {
+      "name" : "maxRunners",
+      "value" : 0
+    }, {
+      "name" : "runnerIdleTIme",
+      "value" : 60
+    }, {
+      "name" : "shouldCreateFailureSnapshot",
+      "value" : true
+    }, {
+      "name" : "webhookConfigs",
+      "value" : [ ]
+    }, {
+      "name" : "sparkConfigs",
+      "value" : [ ]
+    }, {
+      "name" : "preprocessScript",
+      "value" : "/*\nThe following script define a method\nthat increments an integer by 1 \nand registers it as a UDF with \nthe SparkSession, which can be accessed\nusing the variable named \"spark\":\ndef inc(i: Integer): Integer = {\n  i + 1\n}\nspark.udf.register (\"inc\", inc _)\n\n*/"
+    }, {
+      "name" : "clusterConfig.clusterType",
+      "value" : "LOCAL"
+    }, {
+      "name" : "clusterConfig.sparkMasterUrl",
+      "value" : "local[*]"
+    }, {
+      "name" : "clusterConfig.deployMode",
+      "value" : "CLIENT"
+    }, {
+      "name" : "clusterConfig.hadoopUserName",
+      "value" : null
+    }, {
+      "name" : "clusterConfig.sparkAppName",
+      "value" : "${pipeline:title()}"
+    }, {
+      "name" : "clusterConfig.stagingDir",
+      "value" : "/streamsets"
+    }, {
+      "name" : "clusterConfig.useYarnKerberosKeytab",
+      "value" : false
+    }, {
+      "name" : "clusterConfig.yarnKerberosKeytabSource",
+      "value" : "PROPERTIES_FILE"
+    }, {
+      "name" : "clusterConfig.yarnKerberosKeytab",
+      "value" : null
+    }, {
+      "name" : "clusterConfig.yarnKerberosKeytabBase64Bytes",
+      "value" : null
+    }, {
+      "name" : "clusterConfig.yarnKerberosPrincipal",
+      "value" : "name@DOMAIN"
+    }, {
+      "name" : "clusterConfig.callbackUrl",
+      "value" : null
+    }, {
+      "name" : "databricksConfig.baseUrl",
+      "value" : null
+    }, {
+      "name" : "databricksConfig.credentialType",
+      "value" : "TOKEN"
+    }, {
+      "name" : "databricksConfig.username",
+      "value" : null
+    }, {
+      "name" : "databricksConfig.password",
+      "value" : null
+    }, {
+      "name" : "databricksConfig.token",
+      "value" : null
+    }, {
+      "name" : "databricksConfig.provisionNewCluster",
+      "value" : true
+    }, {
+      "name" : "databricksConfig.clusterId",
+      "value" : null
+    }, {
+      "name" : "databricksConfig.clusterConfig",
+      "value" : "{\n    \"num_workers\": 8,\n    \"spark_version\": \"5.3.x-scala2.11\",\n    \"node_type_id\": \"i3.xlarge\"\n}"
+    }, {
+      "name" : "databricksConfig.terminateCluster",
+      "value" : false
+    }, {
+      "name" : "livyConfig.baseUrl",
+      "value" : "https://localhost:30443/gateway/default/livy/v1/"
+    }, {
+      "name" : "livyConfig.username",
+      "value" : null
+    }, {
+      "name" : "livyConfig.password",
+      "value" : null
+    }, {
+      "name" : "sdcEmrConnectionSelection",
+      "value" : "MANUAL"
+    }, {
+      "name" : "sdcEmrConnection.awsConfig.credentialMode",
+      "value" : "WITH_CREDENTIALS"
+    }, {
+      "name" : "sdcEmrConnection.awsConfig.awsAccessKeyId",
+      "value" : null
+    }, {
+      "name" : "sdcEmrConnection.awsConfig.awsSecretAccessKey",
+      "value" : null
+    }, {
+      "name" : "sdcEmrConnection.awsConfig.roleARN",
+      "value" : ""
+    }, {
+      "name" : "sdcEmrConnection.awsConfig.roleSessionName",
+      "value" : null
+    }, {
+      "name" : "sdcEmrConnection.awsConfig.sessionDuration",
+      "value" : 3600
+    }, {
+      "name" : "sdcEmrConnection.awsConfig.setSessionTags",
+      "value" : true
+    }, {
+      "name" : "sdcEmrConnection.region",
+      "value" : "US_WEST_2"
+    }, {
+      "name" : "sdcEmrConnection.customRegion",
+      "value" : null
+    }, {
+      "name" : "sdcEmrConnection.s3StagingUri",
+      "value" : null
+    }, {
+      "name" : "sdcEmrConnection.provisionNewCluster",
+      "value" : false
+    }, {
+      "name" : "sdcEmrConnection.clusterId",
+      "value" : null
+    }, {
+      "name" : "sdcEmrConnection.emrVersion",
+      "value" : null
+    }, {
+      "name" : "sdcEmrConnection.clusterPrefix",
+      "value" : null
+    }, {
+      "name" : "sdcEmrConnection.terminateCluster",
+      "value" : true
+    }, {
+      "name" : "sdcEmrConnection.loggingEnabled",
+      "value" : true
+    }, {
+      "name" : "sdcEmrConnection.s3LogUri",
+      "value" : null
+    }, {
+      "name" : "sdcEmrConnection.serviceRole",
+      "value" : "EMR_DefaultRole"
+    }, {
+      "name" : "sdcEmrConnection.jobFlowRole",
+      "value" : "EMR_EC2_DefaultRole"
+    }, {
+      "name" : "sdcEmrConnection.visibleToAllUsers",
+      "value" : true
+    }, {
+      "name" : "sdcEmrConnection.ec2SubnetId",
+      "value" : null
+    }, {
+      "name" : "sdcEmrConnection.masterSecurityGroup",
+      "value" : null
+    }, {
+      "name" : "sdcEmrConnection.slaveSecurityGroup",
+      "value" : null
+    }, {
+      "name" : "sdcEmrConnection.serviceAccessSecurityGroup",
+      "value" : null
+    }, {
+      "name" : "sdcEmrConnection.instanceCount",
+      "value" : 2
+    }, {
+      "name" : "sdcEmrConnection.stepConcurrency",
+      "value" : 1
+    }, {
+      "name" : "sdcEmrConnection.masterInstanceType",
+      "value" : null
+    }, {
+      "name" : "sdcEmrConnection.masterInstanceTypeCustom",
+      "value" : null
+    }, {
+      "name" : "sdcEmrConnection.slaveInstanceType",
+      "value" : null
+    }, {
+      "name" : "sdcEmrConnection.slaveInstanceTypeCustom",
+      "value" : null
+    }, {
+      "name" : "enableEMRDebugging",
+      "value" : true
+    }, {
+      "name" : "transformerEmrConnectionSelection",
+      "value" : "MANUAL"
+    }, {
+      "name" : "transformerEmrConnection.awsConfig.credentialMode",
+      "value" : "WITH_CREDENTIALS"
+    }, {
+      "name" : "transformerEmrConnection.awsConfig.awsAccessKeyId",
+      "value" : null
+    }, {
+      "name" : "transformerEmrConnection.awsConfig.awsSecretAccessKey",
+      "value" : null
+    }, {
+      "name" : "transformerEmrConnection.awsConfig.roleARN",
+      "value" : ""
+    }, {
+      "name" : "transformerEmrConnection.awsConfig.roleSessionName",
+      "value" : null
+    }, {
+      "name" : "transformerEmrConnection.awsConfig.sessionDuration",
+      "value" : 3600
+    }, {
+      "name" : "transformerEmrConnection.awsConfig.setSessionTags",
+      "value" : true
+    }, {
+      "name" : "transformerEmrConnection.region",
+      "value" : "US_WEST_2"
+    }, {
+      "name" : "transformerEmrConnection.customRegion",
+      "value" : null
+    }, {
+      "name" : "transformerEmrConnection.s3StagingUri",
+      "value" : null
+    }, {
+      "name" : "transformerEmrConnection.provisionNewCluster",
+      "value" : false
+    }, {
+      "name" : "transformerEmrConnection.clusterId",
+      "value" : null
+    }, {
+      "name" : "transformerEmrConnection.emrVersion",
+      "value" : null
+    }, {
+      "name" : "transformerEmrConnection.clusterPrefix",
+      "value" : null
+    }, {
+      "name" : "transformerEmrConnection.terminateCluster",
+      "value" : true
+    }, {
+      "name" : "transformerEmrConnection.loggingEnabled",
+      "value" : true
+    }, {
+      "name" : "transformerEmrConnection.s3LogUri",
+      "value" : null
+    }, {
+      "name" : "transformerEmrConnection.serviceRole",
+      "value" : "EMR_DefaultRole"
+    }, {
+      "name" : "transformerEmrConnection.jobFlowRole",
+      "value" : "EMR_EC2_DefaultRole"
+    }, {
+      "name" : "transformerEmrConnection.visibleToAllUsers",
+      "value" : true
+    }, {
+      "name" : "transformerEmrConnection.ec2SubnetId",
+      "value" : null
+    }, {
+      "name" : "transformerEmrConnection.masterSecurityGroup",
+      "value" : null
+    }, {
+      "name" : "transformerEmrConnection.slaveSecurityGroup",
+      "value" : null
+    }, {
+      "name" : "transformerEmrConnection.serviceAccessSecurityGroup",
+      "value" : null
+    }, {
+      "name" : "transformerEmrConnection.instanceCount",
+      "value" : 2
+    }, {
+      "name" : "transformerEmrConnection.stepConcurrency",
+      "value" : 1
+    }, {
+      "name" : "transformerEmrConnection.masterInstanceType",
+      "value" : null
+    }, {
+      "name" : "transformerEmrConnection.masterInstanceTypeCustom",
+      "value" : null
+    }, {
+      "name" : "transformerEmrConnection.slaveInstanceType",
+      "value" : null
+    }, {
+      "name" : "transformerEmrConnection.slaveInstanceTypeCustom",
+      "value" : null
+    }, {
+      "name" : "transformerEMRConfig.encryption",
+      "value" : "NONE"
+    }, {
+      "name" : "transformerEMRConfig.kmsKeyId",
+      "value" : null
+    }, {
+      "name" : "googleCloudCredentialsConfig.projectId",
+      "value" : null
+    }, {
+      "name" : "googleCloudCredentialsConfig.credentialsProvider",
+      "value" : "DEFAULT_PROVIDER"
+    }, {
+      "name" : "googleCloudCredentialsConfig.path",
+      "value" : null
+    }, {
+      "name" : "googleCloudCredentialsConfig.credentialsFileContent",
+      "value" : null
+    }, {
+      "name" : "googleCloudConfig.region",
+      "value" : null
+    }, {
+      "name" : "googleCloudConfig.customRegion",
+      "value" : null
+    }, {
+      "name" : "googleCloudConfig.gcsStagingUri",
+      "value" : null
+    }, {
+      "name" : "googleCloudConfig.create",
+      "value" : false
+    }, {
+      "name" : "googleCloudConfig.clusterPrefix",
+      "value" : null
+    }, {
+      "name" : "googleCloudConfig.version",
+      "value" : "1.4-ubuntu18"
+    }, {
+      "name" : "googleCloudConfig.masterType",
+      "value" : null
+    }, {
+      "name" : "googleCloudConfig.workerType",
+      "value" : null
+    }, {
+      "name" : "googleCloudConfig.networkType",
+      "value" : null
+    }, {
+      "name" : "googleCloudConfig.network",
+      "value" : null
+    }, {
+      "name" : "googleCloudConfig.subnet",
+      "value" : null
+    }, {
+      "name" : "googleCloudConfig.tags",
+      "value" : [ ]
+    }, {
+      "name" : "googleCloudConfig.workerCount",
+      "value" : 2
+    }, {
+      "name" : "googleCloudConfig.clusterName",
+      "value" : null
+    }, {
+      "name" : "googleCloudConfig.terminate",
+      "value" : null
+    } ],
+    "uiInfo" : {
+      "displayMode" : "BASIC",
+      "previewConfig" : {
+        "previewSource" : "CONFIGURED_SOURCE",
+        "batchSize" : 10,
+        "timeout" : 30000,
+        "writeToDestinations" : false,
+        "executeLifecycleEvents" : false,
+        "showHeader" : true,
+        "showFieldType" : true,
+        "rememberMe" : false
+      }
+    },
+    "fragments" : [ ],
+    "stages" : [ {
+      "instanceName" : "JDBCQueryConsumer_01",
+      "library" : "streamsets-datacollector-jdbc-lib",
+      "stageName" : "com_streamsets_pipeline_stage_origin_jdbc_JdbcDSource",
+      "stageVersion" : "13",
+      "configuration" : [ {
+        "name" : "isIncrementalMode",
+        "value" : true
+      }, {
+        "name" : "query",
+        "value" : "select C.CAMPAIGNID, C.CAMPAIGNNAME, C.`SUBJECT`, TF.TEMPLATEFIELDID, TF.FIELDNAME, TFF.FREENUMERIC, TFF.FREEDATE, TFF.FREESTRING, TFC.FREECLOB, TFS.SUBNAME ,C.lastUpdated  ,CTC.lastUpdated as CTClastUpdated, TC.lastUpdated as TClastUpdated , TF.lastUpdated as TFlastUpdated ,TFF.lastUpdated as TFFlastUpdated ,TFC.lastUpdated as TFClastUpdated,TFS.lastUpdated as TFSlastUpdated ,TFSS.lastUpdated as TFSSlastUpdated\n from publication.CAMPAIGNS C \ninner join publication.CAMPAIGNTEMPLATECUSTOM CTC on C.CAMPAIGNID = CTC.CAMPAIGNID\ninner join publication.TEMPLATECUSTOM TC on CTC.TEMPLATECUSTOMID = TC.TEMPLATECUSTOMID\ninner join publication.TEMPLATEFIELD TF on TC.TEMPLATEID = TF.TEMPLATEID\nleft join publication.TEMPLATEFIELDFREE TFF on TF.TEMPLATEFIELDID = TFF.TEMPLATEFIELDID and TC.TEMPLATECUSTOMID = TFF.TEMPLATECUSTOMID\nleft join publication.TEMPLATEFIELDCLOB TFC on TFC.TEMPLATEFIELDID = TF.TEMPLATEFIELDID and TC.TEMPLATECUSTOMID = TFC.TEMPLATECUSTOMID\nleft join publication.TEMPLATEFIELDSUB TFS on TFS.TEMPLATEFIELDID = TF.TEMPLATEFIELDID\nleft join publication.TEMPLATEFIELDSUBSELECT TFSS on TFSS.TEMPLATECUSTOMID = TC.TEMPLATECUSTOMID and TFSS.TEMPLATEFIELDSUBID = TFS.TEMPLATEFIELDSUBID\nWHERE  \nTIMESTAMP(C.lastUpdated) > TIMESTAMP('${OFFSET}') OR \nTIMESTAMP(CTC.lastUpdated) > TIMESTAMP('${OFFSET}') or \nTIMESTAMP(TC.lastUpdated) > TIMESTAMP('${OFFSET}') or \nTIMESTAMP(TF.lastUpdated) > TIMESTAMP('${OFFSET}') or \nTIMESTAMP(TFF.lastUpdated) > TIMESTAMP('${OFFSET}') or \nTIMESTAMP(TFC.lastUpdated) > TIMESTAMP('${OFFSET}') or \nTIMESTAMP(TFS.lastUpdated) > TIMESTAMP('${OFFSET}') or\nTIMESTAMP(TFSS.lastUpdated) > TIMESTAMP('${OFFSET}') \nORDER BY C.lastUpdated"
+      }, {
+        "name" : "initialOffset",
+        "value" : "2021-01-19 10:47:49"
+      }, {
+        "name" : "offsetColumn",
+        "value" : "lastUpdated"
+      }, {
+        "name" : "jdbcRecordType",
+        "value" : "LIST_MAP"
+      }, {
+        "name" : "queryInterval",
+        "value" : "${30 * SECONDS}"
+      }, {
+        "name" : "commonSourceConfigBean.maxBatchSize",
+        "value" : 100
+      }, {
+        "name" : "commonSourceConfigBean.maxClobSize",
+        "value" : 1000
+      }, {
+        "name" : "commonSourceConfigBean.maxBlobSize",
+        "value" : 1000
+      }, {
+        "name" : "commonSourceConfigBean.numSQLErrorRetries",
+        "value" : 0
+      }, {
+        "name" : "commonSourceConfigBean.newTableQueryInterval",
+        "value" : "${10 * SECONDS}"
+      }, {
+        "name" : "commonSourceConfigBean.txnWindow",
+        "value" : -1
+      }, {
+        "name" : "commonSourceConfigBean.noMoreDataEventDelay",
+        "value" : 0
+      }, {
+        "name" : "commonSourceConfigBean.convertTimestampToString",
+        "value" : false
+      }, {
+        "name" : "txnIdColumnName",
+        "value" : null
+      }, {
+        "name" : "txnMaxSize",
+        "value" : 10000
+      }, {
+        "name" : "hikariConfigBean.connectionSelection",
+        "value" : "MANUAL"
+      }, {
+        "name" : "hikariConfigBean.connection.connectionString",
+        "value" : "jdbc:mysql://priyak-ub:3309/publication"
+      }, {
+        "name" : "hikariConfigBean.connection.useCredentials",
+        "value" : true
+      }, {
+        "name" : "hikariConfigBean.connection.username",
+        "value" : ""
+      }, {
+        "name" : "hikariConfigBean.connection.password",
+        "value" : ""
+      }, {
+        "name" : "hikariConfigBean.driverProperties",
+        "value" : [ ]
+      }, {
+        "name" : "hikariConfigBean.driverClassName",
+        "value" : "com.mysql.jdbc.Driver"
+      }, {
+        "name" : "hikariConfigBean.connectionTestQuery",
+        "value" : null
+      }, {
+        "name" : "hikariConfigBean.maximumPoolSize",
+        "value" : 20
+      }, {
+        "name" : "hikariConfigBean.minIdle",
+        "value" : 1
+      }, {
+        "name" : "hikariConfigBean.connectionTimeout",
+        "value" : "${30 * SECONDS}"
+      }, {
+        "name" : "hikariConfigBean.idleTimeout",
+        "value" : "${10 * MINUTES}"
+      }, {
+        "name" : "hikariConfigBean.maxLifetime",
+        "value" : "${30 * MINUTES}"
+      }, {
+        "name" : "hikariConfigBean.autoCommit",
+        "value" : false
+      }, {
+        "name" : "hikariConfigBean.readOnly",
+        "value" : true
+      }, {
+        "name" : "hikariConfigBean.initialQuery",
+        "value" : null
+      }, {
+        "name" : "hikariConfigBean.transactionIsolation",
+        "value" : "DEFAULT"
+      }, {
+        "name" : "createJDBCNsHeaders",
+        "value" : true
+      }, {
+        "name" : "jdbcNsHeaderPrefix",
+        "value" : "sdc."
+      }, {
+        "name" : "disableValidation",
+        "value" : false
+      }, {
+        "name" : "unknownTypeAction",
+        "value" : "STOP_PIPELINE"
+      }, {
+        "name" : "stageOnRecordError",
+        "value" : "TO_ERROR"
+      } ],
+      "uiInfo" : {
+        "yPos" : 157,
+        "stageType" : "SOURCE",
+        "icon" : "rdbms.png",
+        "description" : "",
+        "label" : "JDBC Query Consumer 1",
+        "xPos" : 336,
+        "displayMode" : "ADVANCED"
+      },
+      "inputLanes" : [ ],
+      "outputLanes" : [ "JDBCQueryConsumer_01OutputLane16105979446460" ],
+      "eventLanes" : [ ],
+      "services" : [ ]
+    }, {
+      "instanceName" : "ExpressionEvaluator_01",
+      "library" : "streamsets-datacollector-basic-lib",
+      "stageName" : "com_streamsets_pipeline_stage_processor_expression_ExpressionDProcessor",
+      "stageVersion" : "2",
+      "configuration" : [ {
+        "name" : "expressionProcessorConfigs",
+        "value" : [ {
+          "fieldToSet" : "/CAMPAIGNID",
+          "expression" : "${record:value('/CAMPAIGNID')}"
+        }, {
+          "fieldToSet" : "/CAMPAIGNNAME",
+          "expression" : "${record:value('/CAMPAIGNNAME')}"
+        }, {
+          "fieldToSet" : "/SUBJECT",
+          "expression" : "${record:value('/SUBJECT')}"
+        }, {
+          "fieldToSet" : "/CAMPAIGNMEDIUMID",
+          "expression" : "${record:value('/CAMPAIGNMEDIUMID')}"
+        }, {
+          "fieldToSet" : "/CAMPAIGNSOURCEID",
+          "expression" : "${record:value('/CAMPAIGNSOURCEID')}"
+        }, {
+          "fieldToSet" : "/MANAGEDCAMPAIGNID",
+          "expression" : "${record:value('/MANAGEDCAMPAIGNID')}"
+        }, {
+          "fieldToSet" : "/DATECREATED",
+          "expression" : "${record:value('/DATECREATED')}"
+        } ]
+      }, {
+        "name" : "headerAttributeConfigs",
+        "value" : [ {
+          "attributeToSet" : "sdc.operation.type",
+          "headerAttributeExpression" : "1"
+        } ]
+      }, {
+        "name" : "fieldAttributeConfigs",
+        "value" : [ {
+          "fieldToSet" : "/CAMPAIGNID",
+          "attributeToSet" : "sdc.operation.type",
+          "fieldAttributeExpression" : "1"
+        }, {
+          "fieldToSet" : "/CAMPAIGNNAME",
+          "attributeToSet" : "sdc.operation.type",
+          "fieldAttributeExpression" : "1"
+        }, {
+          "fieldToSet" : "/SUBJECT",
+          "attributeToSet" : "sdc.operation.type",
+          "fieldAttributeExpression" : "1"
+        }, {
+          "fieldToSet" : "/CAMPAIGNMEDIUMID",
+          "attributeToSet" : "sdc.operation.type",
+          "fieldAttributeExpression" : "1"
+        }, {
+          "fieldToSet" : "/CAMPAIGNSOURCEID",
+          "attributeToSet" : "sdc.operation.type",
+          "fieldAttributeExpression" : "1"
+        }, {
+          "fieldToSet" : "/MANAGEDCAMPAIGNID",
+          "attributeToSet" : "sdc.operation.type",
+          "fieldAttributeExpression" : "1"
+        }, {
+          "fieldToSet" : "/DATECREATED",
+          "attributeToSet" : "sdc.operation.type",
+          "fieldAttributeExpression" : "1"
+        } ]
+      }, {
+        "name" : "stageOnRecordError",
+        "value" : "TO_ERROR"
+      }, {
+        "name" : "stageRequiredFields",
+        "value" : [ ]
+      }, {
+        "name" : "stageRecordPreconditions",
+        "value" : [ ]
+      } ],
+      "uiInfo" : {
+        "yPos" : 158,
+        "stageType" : "PROCESSOR",
+        "icon" : "expression.png",
+        "description" : "",
+        "label" : "Expression Evaluator 1",
+        "xPos" : 583,
+        "displayMode" : "BASIC"
+      },
+      "inputLanes" : [ "JDBCQueryConsumer_01OutputLane16105979446460" ],
+      "outputLanes" : [ "ExpressionEvaluator_01OutputLane16106149550300" ],
+      "eventLanes" : [ ],
+      "services" : [ ]
+    }, {
+      "instanceName" : "MongoDB_01",
+      "library" : "streamsets-datacollector-mongodb_4-lib",
+      "stageName" : "com_streamsets_pipeline_stage_destination_mongodb_MongoDBDTarget",
+      "stageVersion" : "4",
+      "configuration" : [ {
+        "name" : "configBean.mongoConfig.connectionString",
+        "value" : "mongodb://root1:password@localhost:27017/publication?authMechanism=SCRAM-SHA-1"
+      }, {
+        "name" : "configBean.mongoConfig.database",
+        "value" : "publication"
+      }, {
+        "name" : "configBean.mongoConfig.collection",
+        "value" : "campaignMultidestication"
+      }, {
+        "name" : "configBean.mongoConfig.authenticationType",
+        "value" : "USER_PASS"
+      }, {
+        "name" : "configBean.mongoConfig.username",
+        "value" : ""
+      }, {
+        "name" : "configBean.mongoConfig.password",
+        "value" : ""
+      }, {
+        "name" : "configBean.mongoConfig.authSource",
+        "value" : "publication"
+      }, {
+        "name" : "configBean.mongoConfig.connectionsPerHost",
+        "value" : 100
+      }, {
+        "name" : "configBean.mongoConfig.minConnectionsPerHost",
+        "value" : 0
+      }, {
+        "name" : "configBean.mongoConfig.connectTimeout",
+        "value" : 10000
+      }, {
+        "name" : "configBean.mongoConfig.maxConnectionIdleTime",
+        "value" : 0
+      }, {
+        "name" : "configBean.mongoConfig.maxConnectionLifeTime",
+        "value" : 0
+      }, {
+        "name" : "configBean.mongoConfig.maxWaitTime",
+        "value" : 120000
+      }, {
+        "name" : "configBean.mongoConfig.serverSelectionTimeout",
+        "value" : 30000
+      }, {
+        "name" : "configBean.mongoConfig.threadsAllowedToBlockForConnectionMultiplier",
+        "value" : 5
+      }, {
+        "name" : "configBean.mongoConfig.heartbeatFrequency",
+        "value" : 10000
+      }, {
+        "name" : "configBean.mongoConfig.minHeartbeatFrequency",
+        "value" : 500
+      }, {
+        "name" : "configBean.mongoConfig.heartbeatConnectTimeout",
+        "value" : 20000
+      }, {
+        "name" : "configBean.mongoConfig.heartbeatSocketTimeout",
+        "value" : 20000
+      }, {
+        "name" : "configBean.mongoConfig.localThreshold",
+        "value" : 15
+      }, {
+        "name" : "configBean.mongoConfig.requiredReplicaSetName",
+        "value" : null
+      }, {
+        "name" : "configBean.mongoConfig.cursorFinalizerEnabled",
+        "value" : true
+      }, {
+        "name" : "configBean.mongoConfig.socketKeepAlive",
+        "value" : false
+      }, {
+        "name" : "configBean.mongoConfig.socketTimeout",
+        "value" : 0
+      }, {
+        "name" : "configBean.mongoConfig.sslEnabled",
+        "value" : false
+      }, {
+        "name" : "configBean.mongoConfig.sslInvalidHostNameAllowed",
+        "value" : false
+      }, {
+        "name" : "configBean.uniqueKeyField",
+        "value" : [ "/CAMPAIGNID", "/CAMPAIGNMEDIUMID", "/CAMPAIGNNAME", "/CAMPAIGNSOURCEID", "/DATECREATED", "/MANAGEDCAMPAIGNID", "/SUBJECT" ]
+      }, {
+        "name" : "configBean.isUpsert",
+        "value" : true
+      }, {
+        "name" : "configBean.writeConcern",
+        "value" : "JOURNAL_SAFE"
+      }, {
+        "name" : "stageOnRecordError",
+        "value" : "TO_ERROR"
+      }, {
+        "name" : "stageRequiredFields",
+        "value" : [ "/CAMPAIGNID", "/SUBJECT", "/CAMPAIGNMEDIUMID", "/MANAGEDCAMPAIGNID", "/DATECREATED", "/CAMPAIGNSOURCEID", "/CAMPAIGNNAME" ]
+      }, {
+        "name" : "stageRecordPreconditions",
+        "value" : [ ]
+      } ],
+      "uiInfo" : {
+        "yPos" : 159,
+        "stageType" : "TARGET",
+        "icon" : "mongodb.png",
+        "description" : "",
+        "label" : "MongoDB 1",
+        "xPos" : 855,
+        "displayMode" : "ADVANCED"
+      },
+      "inputLanes" : [ "ExpressionEvaluator_01OutputLane16106149550300" ],
+      "outputLanes" : [ ],
+      "eventLanes" : [ ],
+      "services" : [ ]
+    }, {
+      "instanceName" : "AmazonS3_01",
+      "library" : "streamsets-datacollector-aws-lib",
+      "stageName" : "com_streamsets_pipeline_stage_destination_s3_AmazonS3DTarget",
+      "stageVersion" : "13",
+      "configuration" : [ {
+        "name" : "s3TargetConfigBean.s3Config.bucketTemplate",
+        "value" : "streamsetdemodatasw"
+      }, {
+        "name" : "s3TargetConfigBean.s3Config.connectionSelection",
+        "value" : "MANUAL"
+      }, {
+        "name" : "s3TargetConfigBean.s3Config.connection.awsConfig.credentialMode",
+        "value" : "WITH_CREDENTIALS"
+      }, {
+        "name" : "s3TargetConfigBean.s3Config.connection.awsConfig.awsAccessKeyId",
+        "value" : ""
+      }, {
+        "name" : "s3TargetConfigBean.s3Config.connection.awsConfig.awsSecretAccessKey",
+        "value" : ""
+      }, {
+        "name" : "s3TargetConfigBean.s3Config.connection.awsConfig.isAssumeRole",
+        "value" : false
+      }, {
+        "name" : "s3TargetConfigBean.s3Config.connection.awsConfig.roleARN",
+        "value" : ""
+      }, {
+        "name" : "s3TargetConfigBean.s3Config.connection.awsConfig.roleSessionName",
+        "value" : null
+      }, {
+        "name" : "s3TargetConfigBean.s3Config.connection.awsConfig.sessionDuration",
+        "value" : 3600
+      }, {
+        "name" : "s3TargetConfigBean.s3Config.connection.awsConfig.setSessionTags",
+        "value" : true
+      }, {
+        "name" : "s3TargetConfigBean.s3Config.connection.useRegion",
+        "value" : false
+      }, {
+        "name" : "s3TargetConfigBean.s3Config.connection.region",
+        "value" : "US_WEST_2"
+      }, {
+        "name" : "s3TargetConfigBean.s3Config.connection.endpoint",
+        "value" : null
+      }, {
+        "name" : "s3TargetConfigBean.s3Config.connection.proxyConfig.connectionTimeout",
+        "value" : 10
+      }, {
+        "name" : "s3TargetConfigBean.s3Config.connection.proxyConfig.socketTimeout",
+        "value" : 50
+      }, {
+        "name" : "s3TargetConfigBean.s3Config.connection.proxyConfig.retryCount",
+        "value" : 3
+      }, {
+        "name" : "s3TargetConfigBean.s3Config.connection.proxyConfig.useProxy",
+        "value" : false
+      }, {
+        "name" : "s3TargetConfigBean.s3Config.connection.proxyConfig.proxyHost",
+        "value" : null
+      }, {
+        "name" : "s3TargetConfigBean.s3Config.connection.proxyConfig.proxyPort",
+        "value" : null
+      }, {
+        "name" : "s3TargetConfigBean.s3Config.connection.proxyConfig.proxyUser",
+        "value" : null
+      }, {
+        "name" : "s3TargetConfigBean.s3Config.connection.proxyConfig.proxyPassword",
+        "value" : null
+      }, {
+        "name" : "s3TargetConfigBean.s3Config.connection.proxyConfig.proxyDomain",
+        "value" : null
+      }, {
+        "name" : "s3TargetConfigBean.s3Config.connection.proxyConfig.proxyWorkstation",
+        "value" : null
+      }, {
+        "name" : "s3TargetConfigBean.s3Config.commonPrefix",
+        "value" : null
+      }, {
+        "name" : "s3TargetConfigBean.s3Config.delimiter",
+        "value" : "/"
+      }, {
+        "name" : "s3TargetConfigBean.s3Config.usePathAddressModel",
+        "value" : false
+      }, {
+        "name" : "s3TargetConfigBean.sseConfig.useSSE",
+        "value" : false
+      }, {
+        "name" : "s3TargetConfigBean.sseConfig.encryption",
+        "value" : "S3"
+      }, {
+        "name" : "s3TargetConfigBean.sseConfig.kmsKeyId",
+        "value" : null
+      }, {
+        "name" : "s3TargetConfigBean.sseConfig.encryptionContext",
+        "value" : [ { } ]
+      }, {
+        "name" : "s3TargetConfigBean.sseConfig.customerKey",
+        "value" : null
+      }, {
+        "name" : "s3TargetConfigBean.sseConfig.customerKeyMd5",
+        "value" : null
+      }, {
+        "name" : "s3TargetConfigBean.tmConfig.threadPoolSize",
+        "value" : 10
+      }, {
+        "name" : "s3TargetConfigBean.tmConfig.multipartUploadThreshold",
+        "value" : 268435456
+      }, {
+        "name" : "s3TargetConfigBean.tmConfig.minimumUploadPartSize",
+        "value" : 5242880
+      }, {
+        "name" : "s3TargetConfigBean.partitionTemplate",
+        "value" : null
+      }, {
+        "name" : "s3TargetConfigBean.timeZoneID",
+        "value" : "UTC"
+      }, {
+        "name" : "s3TargetConfigBean.timeDriverTemplate",
+        "value" : "${time:now()}"
+      }, {
+        "name" : "s3TargetConfigBean.fileNamePrefix",
+        "value" : "sdc"
+      }, {
+        "name" : "s3TargetConfigBean.fileNameSuffix",
+        "value" : null
+      }, {
+        "name" : "s3TargetConfigBean.compress",
+        "value" : false
+      }, {
+        "name" : "stageOnRecordError",
+        "value" : "TO_ERROR"
+      }, {
+        "name" : "stageRequiredFields",
+        "value" : [ "/CAMPAIGNID", "/CAMPAIGNNAME", "/SUBJECT", "/TEMPLATEFIELDID", "/FIELDNAME", "/FREENUMERIC", "/FREEDATE", "/FREESTRING", "/FREECLOB", "/SUBNAME", "/CAMPAIGNMEDIUMID", "/CAMPAIGNSOURCEID" ]
+      }, {
+        "name" : "stageRecordPreconditions",
+        "value" : [ ]
+      } ],
+      "uiInfo" : {
+        "yPos" : 284,
+        "stageType" : "TARGET",
+        "icon" : "s3.png",
+        "description" : "",
+        "label" : "Amazon S3 1",
+        "xPos" : 852,
+        "displayMode" : "ADVANCED"
+      },
+      "inputLanes" : [ "ExpressionEvaluator_01OutputLane16106149550300" ],
+      "outputLanes" : [ ],
+      "eventLanes" : [ ],
+      "services" : [ {
+        "service" : "com.streamsets.pipeline.api.service.dataformats.DataFormatGeneratorService",
+        "serviceVersion" : 1,
+        "configuration" : [ {
+          "name" : "dataFormat",
+          "value" : "JSON"
+        }, {
+          "name" : "dataGeneratorFormatConfig.charset",
+          "value" : "UTF-8"
+        }, {
+          "name" : "dataGeneratorFormatConfig.csvFileFormat",
+          "value" : "CSV"
+        }, {
+          "name" : "dataGeneratorFormatConfig.csvHeader",
+          "value" : "NO_HEADER"
+        }, {
+          "name" : "dataGeneratorFormatConfig.csvReplaceNewLines",
+          "value" : true
+        }, {
+          "name" : "dataGeneratorFormatConfig.csvReplaceNewLinesString",
+          "value" : " "
+        }, {
+          "name" : "dataGeneratorFormatConfig.csvCustomDelimiter",
+          "value" : "|"
+        }, {
+          "name" : "dataGeneratorFormatConfig.csvCustomEscape",
+          "value" : "\\"
+        }, {
+          "name" : "dataGeneratorFormatConfig.csvCustomQuote",
+          "value" : "\""
+        }, {
+          "name" : "dataGeneratorFormatConfig.csvQuoteMode",
+          "value" : "MINIMAL"
+        }, {
+          "name" : "dataGeneratorFormatConfig.jsonMode",
+          "value" : "MULTIPLE_OBJECTS"
+        }, {
+          "name" : "dataGeneratorFormatConfig.textFieldPath",
+          "value" : "/text"
+        }, {
+          "name" : "dataGeneratorFormatConfig.textRecordSeparator",
+          "value" : "\\n"
+        }, {
+          "name" : "dataGeneratorFormatConfig.textFieldMissingAction",
+          "value" : "ERROR"
+        }, {
+          "name" : "dataGeneratorFormatConfig.textEmptyLineIfNull",
+          "value" : false
+        }, {
+          "name" : "dataGeneratorFormatConfig.avroSchemaSource",
+          "value" : null
+        }, {
+          "name" : "dataGeneratorFormatConfig.avroSchema",
+          "value" : null
+        }, {
+          "name" : "dataGeneratorFormatConfig.registerSchema",
+          "value" : false
+        }, {
+          "name" : "dataGeneratorFormatConfig.schemaRegistryUrlsForRegistration",
+          "value" : [ "" ]
+        }, {
+          "name" : "dataGeneratorFormatConfig.schemaRegistryUrls",
+          "value" : [ "" ]
+        }, {
+          "name" : "dataGeneratorFormatConfig.basicAuthUserInfo",
+          "value" : null
+        }, {
+          "name" : "dataGeneratorFormatConfig.schemaLookupMode",
+          "value" : "SUBJECT"
+        }, {
+          "name" : "dataGeneratorFormatConfig.subject",
+          "value" : null
+        }, {
+          "name" : "dataGeneratorFormatConfig.subjectToRegister",
+          "value" : null
+        }, {
+          "name" : "dataGeneratorFormatConfig.basicAuthUserInfoForRegistration",
+          "value" : null
+        }, {
+          "name" : "dataGeneratorFormatConfig.schemaId",
+          "value" : null
+        }, {
+          "name" : "dataGeneratorFormatConfig.includeSchema",
+          "value" : true
+        }, {
+          "name" : "dataGeneratorFormatConfig.avroCompression",
+          "value" : "NULL"
+        }, {
+          "name" : "dataGeneratorFormatConfig.binaryFieldPath",
+          "value" : "/"
+        }, {
+          "name" : "dataGeneratorFormatConfig.protoDescriptorFile",
+          "value" : null
+        }, {
+          "name" : "dataGeneratorFormatConfig.messageType",
+          "value" : null
+        }, {
+          "name" : "dataGeneratorFormatConfig.fileNameEL",
+          "value" : null
+        }, {
+          "name" : "dataGeneratorFormatConfig.wholeFileExistsAction",
+          "value" : "TO_ERROR"
+        }, {
+          "name" : "dataGeneratorFormatConfig.includeChecksumInTheEvents",
+          "value" : false
+        }, {
+          "name" : "dataGeneratorFormatConfig.checksumAlgorithm",
+          "value" : "MD5"
+        }, {
+          "name" : "dataGeneratorFormatConfig.xmlPrettyPrint",
+          "value" : true
+        }, {
+          "name" : "dataGeneratorFormatConfig.xmlValidateSchema",
+          "value" : false
+        }, {
+          "name" : "dataGeneratorFormatConfig.xmlSchema",
+          "value" : null
+        }, {
+          "name" : "displayFormats",
+          "value" : "AVRO,BINARY,DELIMITED,JSON,PROTOBUF,SDC_JSON,TEXT,WHOLE_FILE"
+        } ]
+      } ]
+    }, {
+      "instanceName" : "Email_01",
+      "library" : "streamsets-datacollector-basic-lib",
+      "stageName" : "com_streamsets_pipeline_stage_executor_emailexecutor_EmailDExecutor",
+      "stageVersion" : "1",
+      "configuration" : [ {
+        "name" : "conf",
+        "value" : [ {
+          "email" : [ "itspriyakar@gmail.com" ],
+          "dummy" : "dummy",
+          "condition" : "true()",
+          "subject" : "Record Updated via Streamsets.",
+          "body" : "Record Updated via Streamsets"
+        } ]
+      }, {
+        "name" : "stageOnRecordError",
+        "value" : "TO_ERROR"
+      }, {
+        "name" : "stageRequiredFields",
+        "value" : [ "/CAMPAIGNID" ]
+      }, {
+        "name" : "stageRecordPreconditions",
+        "value" : [ ]
+      } ],
+      "uiInfo" : {
+        "yPos" : 36,
+        "stageType" : "EXECUTOR",
+        "icon" : "envelope.png",
+        "description" : "",
+        "label" : "Email 1",
+        "xPos" : 855,
+        "displayMode" : "ADVANCED"
+      },
+      "inputLanes" : [ "ExpressionEvaluator_01OutputLane16106149550300" ],
+      "outputLanes" : [ ],
+      "eventLanes" : [ ],
+      "services" : [ ]
+    } ],
+    "errorStage" : {
+      "instanceName" : "errorStageStageInstance",
+      "library" : "streamsets-datacollector-basic-lib",
+      "stageName" : "com_streamsets_pipeline_stage_destination_devnull_ToErrorNullDTarget",
+      "stageVersion" : "1",
+      "configuration" : [ ],
+      "uiInfo" : {
+        "stageType" : "TARGET",
+        "label" : "Error -Discard"
+      },
+      "inputLanes" : [ ],
+      "outputLanes" : [ ],
+      "eventLanes" : [ ],
+      "services" : [ ]
+    },
+    "info" : {
+      "pipelineId" : "S344c8e253-8d58-4487-86f5-fb652cb4e90b",
+      "title" : "3-StreamingDataToMultipleDestination",
+      "description" : "",
+      "created" : 1610973759076,
+      "lastModified" : 1611295975265,
+      "creator" : "priya.kar@talentica.com",
+      "lastModifier" : "priya.kar@talentica.com",
+      "lastRev" : "0",
+      "uuid" : "7a8e64bb-9dac-46e4-b2e9-fb6dd28deabd",
+      "valid" : true,
+      "metadata" : {
+        "labels" : [ ]
+      },
+      "name" : "S344c8e253-8d58-4487-86f5-fb652cb4e90b",
+      "sdcVersion" : "3.20.0",
+      "sdcId" : "11363a1c-5989-11eb-9de8-0746d431c74e"
+    },
+    "metadata" : {
+      "labels" : [ ]
+    },
+    "statsAggregatorStage" : {
+      "instanceName" : "statsAggregatorStageInstance",
+      "library" : "streamsets-datacollector-basic-lib",
+      "stageName" : "com_streamsets_pipeline_stage_destination_devnull_StatsDpmDirectlyDTarget",
+      "stageVersion" : "1",
+      "configuration" : [ ],
+      "uiInfo" : {
+        "stageType" : "TARGET",
+        "label" : "Stats Aggregator -Write Directly to Control Hub - statistics are not aggregated across Data Collectors"
+      },
+      "inputLanes" : [ ],
+      "outputLanes" : [ ],
+      "eventLanes" : [ ],
+      "services" : [ ]
+    },
+    "startEventStages" : [ {
+      "instanceName" : "Discard_StartEventStage",
+      "library" : "streamsets-datacollector-basic-lib",
+      "stageName" : "com_streamsets_pipeline_stage_destination_devnull_ToErrorNullDTarget",
+      "stageVersion" : "1",
+      "configuration" : [ ],
+      "uiInfo" : {
+        "yPos" : 50,
+        "stageType" : "TARGET",
+        "icon" : "",
+        "description" : "",
+        "label" : "Start Event - Discard",
+        "xPos" : 280
+      },
+      "inputLanes" : [ ],
+      "outputLanes" : [ ],
+      "eventLanes" : [ ],
+      "services" : [ ]
+    } ],
+    "stopEventStages" : [ {
+      "instanceName" : "Discard_StopEventStage",
+      "library" : "streamsets-datacollector-basic-lib",
+      "stageName" : "com_streamsets_pipeline_stage_destination_devnull_ToErrorNullDTarget",
+      "stageVersion" : "1",
+      "configuration" : [ ],
+      "uiInfo" : {
+        "yPos" : 50,
+        "stageType" : "TARGET",
+        "icon" : "",
+        "description" : "",
+        "label" : "Stop Event - Discard",
+        "xPos" : 280
+      },
+      "inputLanes" : [ ],
+      "outputLanes" : [ ],
+      "eventLanes" : [ ],
+      "services" : [ ]
+    } ],
+    "testOriginStage" : {
+      "instanceName" : "com_streamsets_pipeline_stage_devtest_rawdata_RawDataDSource_TestOriginStage",
+      "library" : "streamsets-datacollector-dev-lib",
+      "stageName" : "com_streamsets_pipeline_stage_devtest_rawdata_RawDataDSource",
+      "stageVersion" : "3",
+      "configuration" : [ {
+        "name" : "rawData",
+        "value" : "{\n  \"f1\": \"abc\",\n  \"f2\": \"xyz\",\n  \"f3\": \"lmn\"\n}"
+      }, {
+        "name" : "stopAfterFirstBatch",
+        "value" : false
+      }, {
+        "name" : "eventData",
+        "value" : null
+      }, {
+        "name" : "stageOnRecordError",
+        "value" : "TO_ERROR"
+      } ],
+      "uiInfo" : {
+        "stageType" : "SOURCE",
+        "label" : "Test Origin - Dev Raw Data Source"
+      },
+      "inputLanes" : [ ],
+      "outputLanes" : [ "com_streamsets_pipeline_stage_devtest_rawdata_RawDataDSource_TestOriginStageOutputLane1" ],
+      "eventLanes" : [ ],
+      "services" : [ {
+        "service" : "com.streamsets.pipeline.api.service.dataformats.DataFormatParserService",
+        "serviceVersion" : 2,
+        "configuration" : [ {
+          "name" : "displayFormats",
+          "value" : "DELIMITED,JSON,LOG,SDC_JSON,TEXT,XML"
+        }, {
+          "name" : "dataFormat",
+          "value" : "JSON"
+        }, {
+          "name" : "dataFormatConfig.compression",
+          "value" : "NONE"
+        }, {
+          "name" : "dataFormatConfig.filePatternInArchive",
+          "value" : "*"
+        }, {
+          "name" : "dataFormatConfig.charset",
+          "value" : "UTF-8"
+        }, {
+          "name" : "dataFormatConfig.removeCtrlChars",
+          "value" : false
+        }, {
+          "name" : "dataFormatConfig.textMaxLineLen",
+          "value" : 1024
+        }, {
+          "name" : "dataFormatConfig.useCustomDelimiter",
+          "value" : false
+        }, {
+          "name" : "dataFormatConfig.customDelimiter",
+          "value" : "\\r\\n"
+        }, {
+          "name" : "dataFormatConfig.includeCustomDelimiterInTheText",
+          "value" : false
+        }, {
+          "name" : "dataFormatConfig.jsonContent",
+          "value" : "MULTIPLE_OBJECTS"
+        }, {
+          "name" : "dataFormatConfig.jsonMaxObjectLen",
+          "value" : 4096
+        }, {
+          "name" : "dataFormatConfig.csvFileFormat",
+          "value" : "CSV"
+        }, {
+          "name" : "dataFormatConfig.csvHeader",
+          "value" : "NO_HEADER"
+        }, {
+          "name" : "dataFormatConfig.csvAllowExtraColumns",
+          "value" : false
+        }, {
+          "name" : "dataFormatConfig.csvExtraColumnPrefix",
+          "value" : "_extra_"
+        }, {
+          "name" : "dataFormatConfig.csvMaxObjectLen",
+          "value" : 1024
+        }, {
+          "name" : "dataFormatConfig.csvCustomDelimiter",
+          "value" : "|"
+        }, {
+          "name" : "dataFormatConfig.multiCharacterFieldDelimiter",
+          "value" : "||"
+        }, {
+          "name" : "dataFormatConfig.multiCharacterLineDelimiter",
+          "value" : "${str:unescapeJava('\\\\n')}"
+        }, {
+          "name" : "dataFormatConfig.csvCustomEscape",
+          "value" : "\\"
+        }, {
+          "name" : "dataFormatConfig.csvCustomQuote",
+          "value" : "\""
+        }, {
+          "name" : "dataFormatConfig.csvEnableComments",
+          "value" : false
+        }, {
+          "name" : "dataFormatConfig.csvCommentMarker",
+          "value" : "#"
+        }, {
+          "name" : "dataFormatConfig.csvIgnoreEmptyLines",
+          "value" : false
+        }, {
+          "name" : "dataFormatConfig.csvRecordType",
+          "value" : "LIST_MAP"
+        }, {
+          "name" : "dataFormatConfig.csvSkipStartLines",
+          "value" : 0
+        }, {
+          "name" : "dataFormatConfig.parseNull",
+          "value" : false
+        }, {
+          "name" : "dataFormatConfig.nullConstant",
+          "value" : "\\\\N"
+        }, {
+          "name" : "dataFormatConfig.xmlRecordElement",
+          "value" : null
+        }, {
+          "name" : "dataFormatConfig.preserveRootElement",
+          "value" : false
+        }, {
+          "name" : "dataFormatConfig.includeFieldXpathAttributes",
+          "value" : false
+        }, {
+          "name" : "dataFormatConfig.xPathNamespaceContext",
+          "value" : [ ]
+        }, {
+          "name" : "dataFormatConfig.outputFieldAttributes",
+          "value" : false
+        }, {
+          "name" : "dataFormatConfig.xmlMaxObjectLen",
+          "value" : 4096
+        }, {
+          "name" : "dataFormatConfig.logMode",
+          "value" : "COMMON_LOG_FORMAT"
+        }, {
+          "name" : "dataFormatConfig.logMaxObjectLen",
+          "value" : 1024
+        }, {
+          "name" : "dataFormatConfig.retainOriginalLine",
+          "value" : false
+        }, {
+          "name" : "dataFormatConfig.customLogFormat",
+          "value" : "%h %l %u %t \"%r\" %>s %b"
+        }, {
+          "name" : "dataFormatConfig.regex",
+          "value" : "^(\\S+) (\\S+) (\\S+) \\[([\\w:/]+\\s[+\\-]\\d{4})\\] \"(\\S+) (\\S+) (\\S+)\" (\\d{3}) (\\d+)"
+        }, {
+          "name" : "dataFormatConfig.fieldPathsToGroupName",
+          "value" : [ {
+            "fieldPath" : "/",
+            "group" : 1
+          } ]
+        }, {
+          "name" : "dataFormatConfig.grokPatternDefinition",
+          "value" : null
+        }, {
+          "name" : "dataFormatConfig.grokPattern",
+          "value" : "%{COMMONAPACHELOG}"
+        }, {
+          "name" : "dataFormatConfig.onParseError",
+          "value" : "ERROR"
+        }, {
+          "name" : "dataFormatConfig.maxStackTraceLines",
+          "value" : 50
+        }, {
+          "name" : "dataFormatConfig.enableLog4jCustomLogFormat",
+          "value" : false
+        }, {
+          "name" : "dataFormatConfig.log4jCustomLogFormat",
+          "value" : "%r [%t] %-5p %c %x - %m%n"
+        }, {
+          "name" : "dataFormatConfig.avroSchemaSource",
+          "value" : null
+        }, {
+          "name" : "dataFormatConfig.avroSchema",
+          "value" : null
+        }, {
+          "name" : "dataFormatConfig.schemaRegistryUrls",
+          "value" : [ ]
+        }, {
+          "name" : "dataFormatConfig.basicAuth",
+          "value" : null
+        }, {
+          "name" : "dataFormatConfig.schemaLookupMode",
+          "value" : "SUBJECT"
+        }, {
+          "name" : "dataFormatConfig.subject",
+          "value" : null
+        }, {
+          "name" : "dataFormatConfig.schemaId",
+          "value" : null
+        }, {
+          "name" : "dataFormatConfig.avroSkipUnionIndex",
+          "value" : false
+        }, {
+          "name" : "dataFormatConfig.protoDescriptorFile",
+          "value" : null
+        }, {
+          "name" : "dataFormatConfig.messageType",
+          "value" : null
+        }, {
+          "name" : "dataFormatConfig.isDelimited",
+          "value" : false
+        }, {
+          "name" : "dataFormatConfig.binaryMaxObjectLen",
+          "value" : 1024
+        }, {
+          "name" : "dataFormatConfig.datagramMode",
+          "value" : "SYSLOG"
+        }, {
+          "name" : "dataFormatConfig.typesDbPath",
+          "value" : null
+        }, {
+          "name" : "dataFormatConfig.convertTime",
+          "value" : false
+        }, {
+          "name" : "dataFormatConfig.excludeInterval",
+          "value" : false
+        }, {
+          "name" : "dataFormatConfig.authFilePath",
+          "value" : null
+        }, {
+          "name" : "dataFormatConfig.netflowOutputValuesMode",
+          "value" : "RAW_AND_INTERPRETED"
+        }, {
+          "name" : "dataFormatConfig.maxTemplateCacheSize",
+          "value" : -1
+        }, {
+          "name" : "dataFormatConfig.templateCacheTimeoutMs",
+          "value" : -1
+        }, {
+          "name" : "dataFormatConfig.netflowOutputValuesModeDatagram",
+          "value" : "RAW_AND_INTERPRETED"
+        }, {
+          "name" : "dataFormatConfig.maxTemplateCacheSizeDatagram",
+          "value" : -1
+        }, {
+          "name" : "dataFormatConfig.templateCacheTimeoutMsDatagram",
+          "value" : -1
+        }, {
+          "name" : "dataFormatConfig.wholeFileMaxObjectLen",
+          "value" : 8192
+        }, {
+          "name" : "dataFormatConfig.rateLimit",
+          "value" : "-1"
+        }, {
+          "name" : "dataFormatConfig.verifyChecksum",
+          "value" : false
+        }, {
+          "name" : "dataFormatConfig.excelHeader",
+          "value" : null
+        }, {
+          "name" : "dataFormatConfig.excelSkipCellsWithNoHeader",
+          "value" : false
+        }, {
+          "name" : "dataFormatConfig.excelReadAllSheets",
+          "value" : false
+        }, {
+          "name" : "dataFormatConfig.excelSheetNames",
+          "value" : [ ]
+        } ]
+      } ]
+    },
+    "valid" : true,
+    "issues" : {
+      "pipelineIssues" : [ ],
+      "stageIssues" : { },
+      "issueCount" : 0
+    },
+    "previewable" : true
+  },
+  "pipelineRules" : {
+    "schemaVersion" : 3,
+    "version" : 2,
+    "metricsRuleDefinitions" : [ {
+      "id" : "badRecordsAlertID",
+      "alertText" : "High incidence of Error Records",
+      "metricId" : "pipeline.batchErrorRecords.counter",
+      "metricType" : "COUNTER",
+      "metricElement" : "COUNTER_COUNT",
+      "condition" : "${value() > 100}",
+      "sendEmail" : false,
+      "enabled" : false,
+      "timestamp" : 1610597932788,
+      "valid" : true
+    }, {
+      "id" : "stageErrorAlertID",
+      "alertText" : "High incidence of Stage Errors",
+      "metricId" : "pipeline.batchErrorMessages.counter",
+      "metricType" : "COUNTER",
+      "metricElement" : "COUNTER_COUNT",
+      "condition" : "${value() > 100}",
+      "sendEmail" : false,
+      "enabled" : false,
+      "timestamp" : 1610597932788,
+      "valid" : true
+    }, {
+      "id" : "idleGaugeID",
+      "alertText" : "Pipeline is Idle",
+      "metricId" : "RuntimeStatsGauge.gauge",
+      "metricType" : "GAUGE",
+      "metricElement" : "TIME_OF_LAST_RECEIVED_RECORD",
+      "condition" : "${time:now() - value() > 120000}",
+      "sendEmail" : false,
+      "enabled" : false,
+      "timestamp" : 1610597932788,
+      "valid" : true
+    }, {
+      "id" : "batchTimeAlertID",
+      "alertText" : "Batch taking more time to process",
+      "metricId" : "RuntimeStatsGauge.gauge",
+      "metricType" : "GAUGE",
+      "metricElement" : "CURRENT_BATCH_AGE",
+      "condition" : "${value() > 200}",
+      "sendEmail" : false,
+      "enabled" : false,
+      "timestamp" : 1610597932788,
+      "valid" : true
+    } ],
+    "dataRuleDefinitions" : [ ],
+    "driftRuleDefinitions" : [ {
+      "id" : "dataDriftRule1610629222804",
+      "label" : "testexpression",
+      "lane" : "ExpressionEvaluator_01OutputLane16106149550300",
+      "samplingPercentage" : 5.0,
+      "samplingRecordsToRetain" : 10,
+      "condition" : "1=1",
+      "alertEnabled" : true,
+      "alertText" : "${alert:info()}",
+      "meterEnabled" : true,
+      "sendEmail" : true,
+      "enabled" : true,
+      "timestamp" : 0,
+      "valid" : true
+    } ],
+    "uuid" : "b1f9e95d-9c79-4dc0-bfe4-89d2b11cc082",
+    "configuration" : [ {
+      "name" : "emailIDs",
+      "value" : [ "priya.kar@talentica.com" ]
+    }, {
+      "name" : "webhookConfigs",
+      "value" : [ ]
+    } ],
+    "ruleIssues" : [ ],
+    "configIssues" : [ ]
+  },
+  "libraryDefinitions" : null
+}

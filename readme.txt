@@ -1,0 +1,143 @@
+
+1. Use Docker Compose to host mysql and mongodb.
+2. Create publication db in both
+3. Execute the DDLs mentioned below to create the tables in mysql
+4. In Data\DML folder, execute the scripts to insert data in the mysql tables.
+5. Download and install stremsets.
+6. Importe the pipleines present in the Data Pipeline folder
+7. Update the mysql and mongodb connection string and DB details accordingly.
+8. Create a new user for Mongodb Publication database and use the details in the pipeline.
+9. Place the mysql connector in the /streamsets-datacollector-3.20.0/streamsets-libs/streamsets-datacollector-jdbc-lib/lib folder
+10. Run a preview of the application and check if all the folder are pointed to the location of your machine.
+11. Please update the AWS credentials accordingly.
+
+
+
+Good Reads:
+
+https://medium.com/faun/managing-mongodb-on-docker-with-docker-compose-26bf8a0bbae3
+https://git-lfs.github.com/
+https://accounts.streamsets.com/install/instruction/data-collector/linux/common-tarball
+https://docs.mongodb.com/compass/current/install
+
+
+
+To Create User for mongodb Publication DB:
+
+priyak@priyak-ub:~/Documents/Priya/Projects/SW_Streamsets/Mongo_SQL Docker Compose$ sudo docker container ls
+CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                      NAMES
+1ca8cae7e079        mongo:latest        "docker-entrypoint.s…"   2 hours ago         Up 2 hours          0.0.0.0:27017->27017/tcp   mongo_sqldockercompose_mongodb_container_1 bash
+
+
+priyak@priyak-ub:~/Documents/Priya/Projects/SW_Streamsets/Mongo_SQL Docker Compose$ docker exec -it mongo_sqldockercompose_mongodb_container_1
+"docker exec" requires at least 2 arguments.
+
+
+priyak@priyak-ub:~/Documents/Priya/Projects/SW_Streamsets/Mongo_SQL Docker Compose$ mongo -u root -p
+
+
+db.createUser(
+{	user: "root1",
+	pwd: "******",
+	roles:[{role: "userAdmin" , db:"publication"}]})
+
+
+
+
+DML:
+
+CREATE TABLE `publication`.`CAMPAIGNS`
+   (	`CAMPAIGNID` DOUBLE, 
+	`CAMPAIGNNAME` NVARCHAR(765), 	
+	`SUBJECT` NVARCHAR(300), 	
+	`CAMPAIGNMEDIUMID` DOUBLE, 
+	`CAMPAIGNSOURCEID` DOUBLE, 
+	`MANAGEDCAMPAIGNID` DOUBLE,	
+	`DATECREATED` DATE, 
+	 PRIMARY KEY (`CAMPAIGNID`)
+   ); 
+   
+   
+    CREATE TABLE `publication`.`TEMPLATECUSTOM` 
+   (
+	`TEMPLATECUSTOMID` DOUBLE NOT NULL, 
+	`TEMPLATEID` DOUBLE NOT NULL , 
+	`COMPANYSITEID` DOUBLE NOT NULL , 
+	`USERID` DOUBLE NOT NULL , 
+	`CUSTOMNAME` NVARCHAR(255) NOT NULL , 
+	`TEMPLATESTATUSID` DOUBLE NOT NULL , 
+	`DATECREATED` DATE, 
+	`DATEUPDATED` DATE, 
+	CONSTRAINT `TEMPLATECUSTOM_PK` PRIMARY KEY (`TEMPLATECUSTOMID`)
+   ); 
+   
+        CREATE TABLE `publication`.`CAMPAIGNTEMPLATECUSTOM` 
+   (	`CAMPAIGNID` DOUBLE NOT NULL, 
+	`TEMPLATECUSTOMID` DOUBLE NOT NULL, 
+	 CONSTRAINT `CAMPAIGNTEMPLATECUSTOM_PK` PRIMARY KEY (`TEMPLATECUSTOMID`, `CAMPAIGNID`),  
+	 CONSTRAINT `CAMPAIGNTEMPLATECUSTOM_TC_FK` FOREIGN KEY (`TEMPLATECUSTOMID`)
+	  REFERENCES `TEMPLATECUSTOM` (`TEMPLATECUSTOMID`), 
+	 CONSTRAINT `CAMPAIGNTEMPLATECUSTOM_CAMP_FK` FOREIGN KEY (`CAMPAIGNID`)
+	  REFERENCES `CAMPAIGNS` (`CAMPAIGNID`) 
+   );
+   
+       CREATE TABLE `publication`.`TEMPLATEFIELD` 
+   (	`TEMPLATEFIELDID` DOUBLE NOT NULL , 
+	`TEMPLATEID` DOUBLE NOT NULL , 
+	`FIELDNAME` NVARCHAR(255) NOT NULL , 
+	`FIELDDESC` NVARCHAR(1000), 
+	`FIELDTYPE` NVARCHAR(20), 
+	`REQUIRED` DOUBLE DEFAULT 0, 
+	`SORT` DOUBLE DEFAULT 999, 
+	`EDITABLE` DOUBLE DEFAULT 0, 
+	`MARKETINGASSETID` DOUBLE DEFAULT 0, 
+	`IMAGE_TEMPLATE_ID` DOUBLE DEFAULT 0, 
+	`NAME_RESOURCE_KEY` NVARCHAR(100), 
+	`MIN_LENGTH` DOUBLE, 
+	`MAX_LENGTH` DOUBLE, 
+	`SHOWTOOLTIP` DOUBLE DEFAULT 0, 
+	`DESCRIPTION_RESOURCE_KEY` NVARCHAR(100), 
+	 CONSTRAINT `TEMPLATEFIELD_PK` PRIMARY KEY (`TEMPLATEFIELDID`)
+	 );
+	 
+	 
+	 CREATE TABLE `publication`.`TEMPLATEFIELDFREE` 
+   (	`TEMPLATEFIELDID` DOUBLE NOT NULL , 
+	`TEMPLATECUSTOMID` DOUBLE DEFAULT 0, 
+	`FREESTRING` NVARCHAR(756), 
+	`FREEDATE` DATE, 
+	`FREENUMERIC` DOUBLE, 
+	 CONSTRAINT `TEMPLATEFIELDFREE_PK` PRIMARY KEY (`TEMPLATECUSTOMID`, `TEMPLATEFIELDID`)
+	 #CONSTRAINT `TEMPLATEFIELDFREE_TF_FK` FOREIGN KEY (`TEMPLATEFIELDID`)	  REFERENCES `CUSTOMER.TEMPLATEFIELD` (`TEMPLATEFIELDID`) , 
+	 #CONSTRAINT `TEMPLATEFIELDFREE_TC_FK` FOREIGN KEY (`TEMPLATECUSTOMID`)	  REFERENCES `CUSTOMER.TEMPLATECUSTOM` (`TEMPLATECUSTOMID`) 
+   );
+   
+   
+    CREATE TABLE `publication`.`TEMPLATEFIELDCLOB` 
+   (	`TEMPLATEFIELDID` DOUBLE NOT NULL , 
+	`TEMPLATECUSTOMID` DOUBLE DEFAULT 0, 
+	`FREECLOB` LONGTEXT,
+	 CONSTRAINT `TEMPLATEFIELDCLOB_PK` PRIMARY KEY (`TEMPLATECUSTOMID`, `TEMPLATEFIELDID`)
+	 #CONSTRAINT TEMPLATEFIELDCLOB_TF_FK FOREIGN KEY (TEMPLATEFIELDID) 	  REFERENCES CUSTOMER.TEMPLATEFIELD (TEMPLATEFIELDID) , 
+	 #CONSTRAINT TEMPLATEFIELDCLOB_TC_FK FOREIGN KEY (TEMPLATECUSTOMID) 	  REFERENCES CUSTOMER.TEMPLATECUSTOM (TEMPLATECUSTOMID) 
+   );
+   
+        CREATE TABLE `publication`.`TEMPLATEFIELDSUB` 
+   (	`TEMPLATEFIELDSUBID` DOUBLE NOT NULL , 
+	`TEMPLATEFIELDID` DOUBLE NOT NULL , 
+	`SUBNAME` DOUBLE NOT NULL , 
+	`SORT` DOUBLE DEFAULT 999, 
+	`SUBNAME_RESOURCE_KEY` NVARCHAR(100), 
+	 CONSTRAINT `TEMPLATEFIELDSUB_PK` PRIMARY KEY (`TEMPLATEFIELDSUBID`)
+	 #  CONSTRAINT TEMPLATEFIELDSUB_TF_FK FOREIGN KEY (TEMPLATEFIELDID)	  REFERENCES CUSTOMER.TEMPLATEFIELD (TEMPLATEFIELDID) 
+   );
+   
+     CREATE TABLE `publication`.`TEMPLATEFIELDSUBSELECT`
+   (	`TEMPLATEFIELDSUBID` DOUBLE NOT NULL , 
+	`TEMPLATECUSTOMID` DOUBLE DEFAULT 0, 
+	 CONSTRAINT `TEMPLATEFIELDSS_PK` PRIMARY KEY (`TEMPLATECUSTOMID`, `TEMPLATEFIELDSUBID`)
+	 #CONSTRAINT TEMPLATEFIELDSS_TC_FK FOREIGN KEY (TEMPLATECUSTOMID) 	  REFERENCES CUSTOMER.TEMPLATECUSTOM (TEMPLATECUSTOMID) , 
+	 #CONSTRAINT TEMPLATEFIELDSS_SUB_FK FOREIGN KEY (TEMPLATEFIELDSUBID) 	  REFERENCES CUSTOMER.TEMPLATEFIELDSUB (TEMPLATEFIELDSUBID) 
+   );
+   
+   

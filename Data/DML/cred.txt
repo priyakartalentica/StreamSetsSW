@@ -1,0 +1,8 @@
+awsAccessKeyId = "AKIAY52CASUCU74XCQF2"
+awsSecretAccessKey = "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"
+
+IAM username: mdipen
+account no: 613781902597
+pwd: swUser@123
+
+arn:aws:s3:::streamsetdemodatasw
